@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../Model/name_model.dart';
-import '../database_helper.dart';
+import '../utils/database_helper.dart';
 
 class SendNameProvider with ChangeNotifier {
   final List<NameModel> _items = [];
