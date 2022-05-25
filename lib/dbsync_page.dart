@@ -59,6 +59,13 @@ class _DBSyncPageState extends State<DBSyncPage> {
 
   Future<dynamic> _getunsynchedrecords() async {
     final allRows = await dbHelper.queryUnsynchedRecords();
+    // debugPrint('query all unsynched:');
+    allRows?.forEach((row) => debugPrint(row.toString()));
+    return allRows;
+  }
+
+  Future<dynamic> _getunsynchedrecordsV2() async {
+    final allRows = await dbHelper.queryUnsynchedRecords();
     debugPrint('query all unsynched:');
     allRows?.forEach((row) => debugPrint(row.toString()));
     return allRows;
@@ -66,7 +73,7 @@ class _DBSyncPageState extends State<DBSyncPage> {
 
   Future<dynamic> queryAllRecords() async {
     final allData = await dbHelper.queryAllRecords();
-    debugPrint('query all unsynched:');
+    // debugPrint('query all unsynched:');
     return allData;
   }
 
@@ -108,11 +115,17 @@ class _DBSyncPageState extends State<DBSyncPage> {
         await context
             .read<SendNameCubit>()
             .sync(row['name'], _connectionStatus);
-        _update(row['id'], row['name']);
         setState(() {
-          _getAllData();
+          _update(row['id'], row['name']);
         });
+
+        // setState(() {
+        //   _update(row['id'], row['name']);
+        //   _getAllData();
+        // });
       });
+
+      _getAllData();
     }
   }
 
@@ -162,7 +175,7 @@ class _DBSyncPageState extends State<DBSyncPage> {
                     ConnectivityResult connectivity,
                     Widget child,
                   ) {
-                    debugPrint('status : $connectivity');
+                    // debugPrint('status : $connectivity');
                     _connectionStatus = connectivity != ConnectivityResult.none;
                     if (connectivity != ConnectivityResult.none) {
                       _syncitnow(_connectionStatus);
@@ -239,7 +252,7 @@ class _DBSyncPageState extends State<DBSyncPage> {
                           style: TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
-                          _getunsynchedrecords();
+                          _getunsynchedrecordsV2();
                         },
                       ),
                       // FutureBuilder(
