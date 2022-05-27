@@ -1,10 +1,14 @@
 # dbsync_app_new
 
-A new Flutter project.
+A new Flutter project : Flutter_offline + sqflite + Flutter_bloc
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+
+to access xampp folder -> htdocs/sync in this folder.
+
+to access database file -> htdocs/db in this folder.
 
 A few resources to get you started if this is your first Flutter project:
 
